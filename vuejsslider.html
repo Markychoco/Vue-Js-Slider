@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
+    <title></title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
+
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+  background-color: #161616;
+}
+h2, p {
+  color: rgba(255, 255, 255, .8);
+}
+h2 {
+  font-weight: 200;
+}
+
+#app {
+  width: 80vw;
+}
+
+header {
+  padding: 50px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header h1 {
+  width: 480px;
+  margin: 0;
+  text-align: center;
+  color: #CFB195;
+  font-weight: 100;
+  font-size: 4em;
+  letter-spacing: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  border: 2px solid #CFB195;
+  border-radius: 5px;
+}
+header .subtitle {
+  color: #CFB195;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 3px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  background-color: #191515;
+  padding: 5px;
+  margin-top: -10px;
+}
+header .subtitle img {
+  height: 12px;
+  padding: 0 10px;
+}
+
+section {
+  padding: 0 0 40px 0;
+  display: flex;
+  justify-content: center;
+}
+section h2 {
+  color: #CFB195;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2em;
+  letter-spacing: 8px;
+}
+dd {
+  padding: 0 0 40px 0;
+  display: fixed;
+  justify-content: center;
+  background-color:;
+}
+dd p {
+  color: #CFB195;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.53em;
+  letter-spacing: 6px;
+}
+dd h3 {
+  color: #CFB195;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2em;
+  letter-spacing: 8px;
+}
+.wrapper {
+  display: flex;
+  height: 100vh;
+  border: 5px solid #CFB195;
+}
+.wrapper a {
+  position: relative;
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: flex 1s;
+}
+.wrapper a:hover {
+  flex: 3;
+}
+
+.wrapper .overlay-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transition: background-color: .4s;
+}
+.wrapper a:hover .overlay-outer {
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.wrapper .overlay-inner * {
+  visibility: hidden;
+  opacity: 0;
+  transform-style: preserve-3d​;
+}
+.wrapper .overlay-outer h2 {
+  transform: translate3d(0, -60px, 0);
+}
+.wrapper .overlay-outer div.info {
+  transform: translate3d(0, 60px, 0);
+}
+.wrapper a:hover .overlay-inner * {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: all .5s .5s;
+}
+
+.wrapper .info {
+  font-size: 14px;
+  line-height: 1.7em;
+  padding: 0 5px;
+}
+.wrapper .info strong {
+  font-size: 16px;
+}
+
+.wrapper .character {
+  background-color: #000000;
+}
+
+@media screen and (max-width: 700px) {
+  .wrapper {
+    flex-direction: column;
+  }
+   
+  .wrapper a:hover {
+    flex: 1;
+  }
+   
+  .wrapper a:hover .overlay-outer {
+    background-color: transparent;
+  }
+   
+  .wrapper .overlay-outer h2,
+  .wrapper .overlay-outer div.info {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+footer {
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+footer h4 {
+  font-size: 14px;
+  color: rgba(255, 255, 255, .8);
+  font-weight: normal;
+  text-align: center;
+  line-height: 1.8em;
+}
+footer h4 a {
+  text-decoration: none;
+  color: #CFB195;
+}
+</style>
+<body>
+<div id="app">
+  
+  <header>
+    <h1>Techno T</h1>
+    <div class="subtitle">
+      <div>A</div>
+      <div>COMING SOON WEBSITE</div>
+    </div>
+  </header>
+  
+  <section>
+    <h2>We are coming soon. Infact Too Soon!</h2>
+  </section>
+  
+   <dd>
+    <h3>About Us</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet ultrices mi. Fusce non sem lobortis, bibendum velit at, hendrerit est. 
+</p>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet ultrices mi. Fusce non sem lobortis, bibendum velit at, hendrerit est.
+</p>
+  </dd>
+  
+  <div class="wrapper">
+
+    <a href="" v-for="item in characters" class="character" :style="{ 'background-image': 'url(' + item.image + ')' }">
+      <div class="overlay-outer">
+        <div class="overlay-inner">
+          <h2>{{ item.name }}</h2>
+          <div class="info">
+            <p>Us: <strong>{{ item.us }}</strong></p>
+            <p>{{ item.bio }}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+  
+  <footer>
+    <a href="https://somacode.co.ke">Supervised by Marky</a>Choco<strong>CLASS PROJECT</strong></h4>
+  </footer>
+</div>
+<script>
+    new Vue({
+  
+  // ELEMENT 
+  el: '#app',
+  
+  // DATA
+  data: {
+    characters: [
+        {
+            name: 'Kate Kaitlyn',
+            role: 'Managing Partner',
+            bio: 'Putting behind a checkered past by lending her skills to a greater cause, Jyn Erso is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.',
+            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
+        },
+        {
+            name: 'Donald Donaldson',
+            role: 'Biologist',
+            bio: 'An accomplished Alliance Intelligence officer with combat field experience, Captain Cassian Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources.',
+            image: 'https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+        },
+        {
+            name: 'Caleb Calebson',
+            role: 'Scientist',
+            bio: 'A reprogrammed Imperial security droid now loyal to the Alliance, K-2SO is an alarming sight standing within a secret Rebel base. The pragmatic droid is an effective insertion agent, as he can blend in perfectly at Imperial installations and outposts.',
+            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+        },
+        {
+            name: 'Immie Binu',
+            role: 'Secretarty',
+            bio: 'Deeply spiritual, Chirrut Îmwe believes all living things are connected through the Force. His sightless eyes do not prevent him from being a highly skilled warrior. Though he lacks Force abilities, this warrior monk has rigorously honed his body through intense physical and mental discipline.',
+            image: 'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'
+        },
+        {
+            name: 'Joe Jose',
+            role: 'Overseeing Partner',
+            bio: 'The harsh reality of his Imperial-occupied home world has hardened Baze Malbus into a pragmatic soldier and a crack shot with his heavy repeater cannon. Baze has a bravado that provides a marked contrast to the spiritual centeredness of his best friend and moral compass, Chirrut Îmwe.',
+            image: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'
+        },
+        {
+            name: 'Rakel Manel',
+            role: 'Finance Manager',
+            bio: 'A former Imperial pilot, Bodhi has strong piloting and technical skills that he will put to use for the Rebellion. Ever practical, but highly anxious, Bodhi must gather his courage to bring the battle to the Empire.',
+            image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+        }
+    ]
+  }
+});
+</script>
+</body>
+</html>
